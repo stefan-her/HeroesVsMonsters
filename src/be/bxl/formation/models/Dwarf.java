@@ -1,9 +1,9 @@
 package be.bxl.formation.models;
 
-import be.bxl.formation.Interfaces.IHeros;
+import be.bxl.formation.Interfaces.IHeroes;
 import be.bxl.formation.Interfaces.IlivingBeing;
 
-public class Dwarf extends Heros implements IlivingBeing, IHeros {
+public class Dwarf extends Heroes implements IlivingBeing, IHeroes {
 
     public Dwarf() {
         super();
@@ -19,4 +19,13 @@ public class Dwarf extends Heros implements IlivingBeing, IHeros {
 
     @Override
     public void addFor() {}
+
+    @Override
+    public void restor() {
+        putEnd();
+        putFor();
+        putPv();
+        addEnd();
+        addFor();
+    }
 }

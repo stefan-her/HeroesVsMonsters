@@ -1,14 +1,16 @@
 package be.bxl.formation.models;
 
-import be.bxl.formation.Interfaces.IHeros;
+import be.bxl.formation.Interfaces.IHeroes;
 
-public abstract class Heros extends LivingBeing implements IHeros {
+public abstract class Heroes extends LivingBeing implements IHeroes {
 
-    public Heros() {
+    public Heroes() {
         super();
         setGold();
         setLeather();
     }
+
+    public abstract void restor();
 
     @Override
     public void setGold() {
@@ -25,4 +27,5 @@ public abstract class Heros extends LivingBeing implements IHeros {
 
     @Override
     public abstract void addFor();
+
 }

@@ -1,5 +1,8 @@
 package be.bxl.formation.models;
 
+import be.bxl.formation.Interfaces.IHeroes;
+import be.bxl.formation.Interfaces.Imonster;
+
 import java.util.ArrayList;
 
 public class Forest {
@@ -57,26 +60,53 @@ public class Forest {
         nbMonster++;
     }
 
+    // TODO
+    // problème de filtration entre Imonstre et IHeroes (demander à Aurélien)
     private LivingBeing searchOpponent(LivingBeing obj) {
         String type = obj.getClass().getSimpleName();
+
         int i = 0;
         while(i < being.size()) {
             LivingBeing opp = being.get(i);
-            if(opp != obj && !opp.isHitDone() && opp.getClass().getSimpleName() != type)  return opp;
+
+            if(opp != obj && !opp.isHitDone() && opp.getClass().getSimpleName() != type)  {
+                System.out.println(opp.getClass().getSimpleName() + "->" + type);
+                return opp;
+            }
+
             i++;
         }
         return null;
     }
 
+    private void clearDeath() {
+        for (int i = being.size() -1; i < 0; i--) {
+            if(being.get(i).getPV() <= 0) {
+                being.remove(i);
+            }
+        }
+    }
+
+    private void resetHitDone() {
+        for (int i = 0; i < being.size(); i++) {
+            being.get(i).setHitDone(false);
+        }
+    }
+
+    private void restorHeroes() {
+        for (int i = 0; i < being.size(); i++) {
+            LivingBeing obj = being.get(i);
+            if(obj instanceof Heroes) {
+                ((Heroes) obj).restor();
+            }
+        }
+    }
+
     public void loop(int loop) {
         for (int i = 0; i < loop; i++) {
 
-
-            for (int j = being.size() -1; j < 0; j--) {
-                if(being.get(j).getPV() <= 0) {
-                    being.remove(j);
-                }
-            }
+            clearDeath();
+            resetHitDone();
 
             System.out.println("le jour " + (i+1) + " dans la forêt de " + this.name );
             boolean flag = true;
@@ -110,10 +140,7 @@ public class Forest {
                     flag = false;
                 }
             }
-
-            for (int j = 0; j < being.size(); j++) {
-                being.get(j).setHitDone(false);
-            }
+            resetHitDone();
         }
     }
 }
