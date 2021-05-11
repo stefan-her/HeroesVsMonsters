@@ -1,4 +1,4 @@
 package be.bxl.formation.models;
 
-public class Monster extends LivingBeing {
+public abstract class Monster extends LivingBeing {
 }

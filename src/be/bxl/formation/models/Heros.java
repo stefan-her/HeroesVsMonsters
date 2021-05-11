@@ -1,4 +1,6 @@
 package be.bxl.formation.models;
 
-public class Heros extends LivingBeing {
+public abstract class Heros extends LivingBeing {
+
+
 }

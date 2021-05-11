@@ -1,14 +1,17 @@
 package be.bxl.formation.models;
 
-import java.util.ArrayList;
-
 public class Dice {
+
+    final private int MINIMUM = 1;
+    final private int MAXIMUM = 6;
+
     private int nbFace;
     private int result;
 
+
     public Dice(int i) {
         setNbFace(i);
-        this.result = (int)(Math.random() * nbFace)  + 1;
+        this.result = (int)(Math.random() * nbFace)  + MINIMUM;
     }
 
     public int getResult() {
