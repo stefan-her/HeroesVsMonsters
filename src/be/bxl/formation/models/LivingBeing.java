@@ -9,14 +9,13 @@ public abstract class LivingBeing implements IlivingBeing {
     private int For; // Force
     private int PV; // point de vie
 
+    protected int gold;
+    protected int leather;
+
     public LivingBeing() {
         putEnd();
         putFor();
         putPv();
-
-        System.out.println(getEnd());
-        System.out.println(getFor());
-        System.out.println(getPV());
     }
 
     private int[] dice(int nbFace, int nbLoop) {
@@ -56,11 +55,6 @@ public abstract class LivingBeing implements IlivingBeing {
         }
 
         return result;
-    }
-
-    @Override
-    public void hit() {
-        System.out.println("hit");
     }
 
     public void putEnd() {
@@ -111,4 +105,18 @@ public abstract class LivingBeing implements IlivingBeing {
     public void setPV(int PV) {
         this.PV = PV;
     }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public int getLeather() {
+        return leather;
+    }
+
+    public abstract void setGold();
+
+    public abstract void setLeather();
+
+    public void hit() {}
 }
