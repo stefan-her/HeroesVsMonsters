@@ -8,6 +8,7 @@ public abstract class LivingBeing implements IlivingBeing {
     private int End; //Endurance
     private int For; // Force
     private int PV; // point de vie
+    private boolean hitDone;
 
     protected int gold;
     protected int leather;
@@ -16,6 +17,7 @@ public abstract class LivingBeing implements IlivingBeing {
         putEnd();
         putFor();
         putPv();
+        setHitDone(false);
     }
 
     private int[] dice(int nbFace, int nbLoop) {
@@ -116,6 +118,14 @@ public abstract class LivingBeing implements IlivingBeing {
 
     public int getLeather() {
         return leather;
+    }
+
+    public boolean isHitDone() {
+        return hitDone;
+    }
+
+    public void setHitDone(boolean hitDone) {
+        this.hitDone = hitDone;
     }
 
     public abstract void setGold();
