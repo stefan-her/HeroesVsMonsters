@@ -73,13 +73,17 @@ public abstract class LivingBeing implements IlivingBeing {
         }
     }
 
+    private int mod(int score) {
+        int mod = 2;
+        if(score < 15) { mod = 1; }
+        else if(score < 10) { mod = 0; }
+        else if(score < 5) { mod = -1; }
+        return mod;
+    }
+
     public void putPv() {
-        int add = 2;
-        if(getEnd() < 15) { add = 1; }
-        else if(getEnd() < 10) { add = 0; }
-        else if(getEnd() < 5) { add = -1; }
-        int result = getEnd() + add;
-        setPV(getEnd() + add);
+        int mod = mod(getEnd());
+        setPV(getEnd() + mod);
     }
 
     public int getEnd() {
@@ -118,5 +122,14 @@ public abstract class LivingBeing implements IlivingBeing {
 
     public abstract void setLeather();
 
-    public void hit() {}
+    public void hit(LivingBeing obj) {
+        Dice dice = new Dice(4);
+        int result = dice.getResult();
+        int damage = mod(getFor()) + result;
+        obj.setPV(obj.getPV() - damage);
+        if(obj.getPV() <= 0 && obj instanceof Monster) {
+            this.gold = obj.getGold();
+            this.leather = obj.getLeather();
+        }
+    }
 }
