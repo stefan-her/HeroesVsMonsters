@@ -1,7 +1,6 @@
 package be.bxl.formation.models;
 
 import be.bxl.formation.Interfaces.IHeroes;
-import be.bxl.formation.Interfaces.Imonster;
 
 import java.util.ArrayList;
 
@@ -60,9 +59,8 @@ public class Forest {
         nbMonster++;
     }
 
-    // TODO
-    // problème de filtration entre Imonstre et IHeroes (demander à Aurélien)
-    private LivingBeing searchOpponent(LivingBeing obj) {
+    // TODO problème de filtration entre Imonstre et IHeroes (demander à Aurélien)
+     private LivingBeing searchOpponent(LivingBeing obj) {
         String type = obj.getClass().getSimpleName();
 
         int i = 0;
